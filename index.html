@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>FUT Champions Web App Ultimate Team</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class=" items-center justify-center h-screen bg-[#7F000F]">
+    <div class="flex justify-between items-center px-16">
+            <a href="#">
+                <img src="img/logo.png" class="max-w-full h-auto w-28" alt="logo">
+            </a>
+            <div class="block lg:hidden">
+                <button id="menu-button" class="text-gray-500 focus:outline-none" onclick="myFunction()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex space-x-8">
+                <a href="index2.html" class="font-semibold lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">Players</a>
+                <a href="more2.html" class="font-semibold  lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">Squad builder</a>
+                <a href="#" class="font-semibold  lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">SBCs</a>
+                <a href="#" class="font-semibold  lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">Squads</a>
+                <a href="#" class="font-semibold  lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">Market</a>
+                <a href="#" class="font-semibold  lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">Evolutions</a>
+                <a href="#" class="font-semibold text-lg bg-[#F7E0A1] rounded-lg py-2 px-3 hover:shadow-2xl hover:scale-105 transition">Sign in</a>
+            </div>
+        </div>
+        <div id="menu" class="lg:hidden  flex-col space-y-2 bg-[#7F000F] px-4 py-2">
+            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Squad builder</a></div>
+            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown ">SBCs</a></div>
+            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Market</a></div>
+            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Evolutions</a></div>
+            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Sign in</a></div>
+        </div>
+    
+
+
+    <main class="container mx-auto">
+      <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+        <div class="w-full md:w-2/3  p-4 rounded-lg lg:ml-16 ">
+          <div class="flex mb-8 justify-between">
+            <h2 class="text-2xl font-semibold mb-4 text-white">Team Formation</h2> 
+            <div>
+                <button
+                onclick="onOpenCreatePlayer()"
+                  class="flex bg-[#70010B] hover:bg-black text-white font-bold py-2 px-4 rounded"
+                >
+                <img src="./assets/user.svg" alt="player" class="w-6" />
+                Create Player
+              </button>
+            </div>
+          </div>
+          <!-- Container for   Stadium -->
+          <div class="relative w-fit h-fit ">
+            <img src="./assets/stadium_background.webp" alt="" class=" w-[70vw] h-[90vh] border-4 border-[#F7E0A1] rounded-lg md:w-[40vw] md:h-[90vh] lg:w-[50vw] lg:h-[95vh] lg:gap-4" />
+
+            <div class="absolute w-full h-full inset-0 flex flex-col justify-between">
+              <div
+                id="forwards"
+                class="relative flex pt-[5%] -mt-[10%] justify-between items-center px-[10%]"
+              >
+                <div
+                  id="LW"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+                <div
+                  id="ST"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] z-20 relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+                <div
+                  id="RW"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+              </div> 
+              <div
+                id="Midfielders"
+                class="relative flex justify-between items-center px-[5%]"
+              >
+                <div
+                  id="CM"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+                <div
+                  id="CM"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] z-20 relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+                <div
+                  id="CM"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+              </div>
+              <div
+                id="defenders"
+                class="relative flex justify-between items-center px-[2%]"
+              >
+                <div
+                  id="LB"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+                <div
+                  id="CB"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+                <div
+                  id="CB"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+                <div
+                  id="RB"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div>
+              </div>
+              <div
+                id="Goalkeeper"
+                class="relative flex justify-center items-center"
+              >
+              <div
+                  id="GK"
+                  class="placeholder_player w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform"
+                >
+                  <img
+                    src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png"
+                    alt="Player badge"
+                    class="absolute w-full h-full z-10"
+                  />
+
+                  
+                </div> 
+                
+            </div>
+            </div>
+          </div>
+</div>
+
+          <div class="w-full md:w-1/3  p-4 rounded-lg text-white">
+            <div class="mt-4 flex  flex-col items-center">
+                <button class="bg-[#70010B] w-full hover:bg-black text-white font-bold py-2 px-4 rounded">Publish</button>
+            </div>
+            <h2 class="text-2xl font-semibold mb-4 ">Settings</h2>
+            <div class="space-y-4">
+                <div>
+                    <label for="formation" class="block mb-1 text-sm font-medium ">Formation</label>
+                    <select id="formation" class="mt-1 px-4 block w-full bg-[#70010B] border border-gray-600 rounded-md">
+                        <option value="4-4-2">4-4-2</option>
+                        <option value="4-3-3">4-3-3</option>
+                        <option value="3-1-4-2">3-1-4-2</option>
+                        <option value="3-4-2-1">3-4-2-1</option>
+                        <option value="3-4-3">3-4-3</option>
+                        <option value="4-1-2-1-2(2)">4-1-2-1-2(2)</option>
+                        <option value="4-1-4-1">4-1-4-1</option>
+                        <option value="4-2-2-2">4-2-2-2</option>
+                        <option value="4-2-3-1(2)">3-1-4-24-2-3-1(2)</option>
+                        <option value="4-3-3(3)">4-3-1-24-3-3(3)</option>
+                        <option value="4-4-1-1(2)">3-1-4-24-4-1-1(2)</option>
+                        <option value="4-4-2(2)">4-4-2(2)</option>
+                        <option value="4-5-1(2)">4-5-1(2)</option>
+                        <option value="5-2-3">5-2-3</option>
+                        <option value="5-4-1">5-4-1</option>
+                        <!-- more  -->
+                        <option value="3-4-1-2">4-4-2</option>
+                        <option value="3-5-2">4-3-3</option>
+                        <option value="4-1-2-1-2">3-1-4-2</option>
+                        <option value="4-1-3-2">3-4-2-1</option>
+                        <option value="4-2-1-3">3-4-3</option>
+                        <option value="4-2-3-1">4-1-2-1-2(2)</option>
+                        <option value="4-2-4">4-1-4-1</option>
+                        <option value="4-3-2-1">4-2-2-2</option>
+                        <option value="4-3-3(2)">3-1-4-24-2-3-1(2)</option>
+                        <option value="4-3-3(4)">4-3-1-24-3-3(3)</option>
+                        <option value="4-4-2">3-1-4-24-4-1-1(2)</option>
+                        <option value="4-5-1">4-4-2(2)</option>
+                        <option value="5-2-1-2">4-5-1(2)</option>
+                        <option value="5-3-2">5-2-3</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="build-up-style" class="block mb-1 text-sm font-medium">Build Up Style</label>
+                    <select id="build-up-style" class="mt-1 px-4 block w-full bg-[#70010B] border border-gray-600 rounded-md">
+                        <option value="balanced">Balanced</option>
+                        <option value="counter">Counter</option>
+                        <option value="short-passing">Short passing</option>
+                    </select>
+                    <p class="text-sm">Players will vary between forward runs and coming short. The team's transition to their in-possession shape will be steady rather than sudden.</p>
+                </div>
+                <div>
+                    <label for="defensive-approach" class="block mb-1 text-sm font-medium">Defensive Approach</label>
+                    <select id="defensive-approach" class="mt-1 px-4 block w-full bg-[#70010B] border border-gray-600 rounded-md">
+                        <option value="balanced">Balanced</option>
+                        <option value="deep">Deep</option>
+                        <option value="high">High</option>
+                        <option value="aggressive">Aggressive</option>
+                    </select>
+                </div>
+                <div class="mt-4">
+                    <label for="line-height" class="block font-medium text-sm">Line Height</label>
+                    <input type="range" id="line-height" name="line-height" min="0" max="100" class="w-full mt-1 appearance-none h-2 rounded-full bg-[#8D4E40] focus:outline-none focus:ring-1 focus:ring-[#70010B] focus:ring-offset-2">
+                </div>
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold mb-2">Terrain : <span id="activeCount">0</span>/11</h3>
+                    <ul id="listeJoueursActifs">
+                        <div id="right" class=" grid justify-items-center grid-cols-5">
+                            
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                            <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" class="transition-all cursor-pointer w-28 hover:scale-95" alt="Gk image">
+                        </div>
+                    </ul>
+                  </div>
+                  
+            </div>
+
+
+            
+      </div>
+      </div>
+    </main>
+    <div id="players_list" class="fixed inset-0 overflow-y-auto backdrop-blur-md z-50 hidden open:flex items-center justify-center ">
+      <div class="bg-[#70010B] p-6 rounded-lg shadow-lg w-[500px] overflow-y-auto text-white">
+      <div class="flex justify-between">
+        <h1 id="sideBar_title" class="text-xl font-bold text-neutral-700 text-white">Substitutes Player</h1>
+        <img
+          src="./assets/x.svg"
+          alt=""
+          class="w-7 ms-auto cursor-pointer"
+          onclick="closeListPlayers()"
+        />
+      </div>
+      
+      <div
+        class="players_list grid grid-cols-2 gap-y-3 mt-10  overflow-y-scroll"
+      ></div>
+    </div>
+    </div>
+    <div id="createPop" class="fixed inset-0 overflow-y-auto backdrop-blur-md z-50 hidden open:flex items-center justify-center ">
+        <div class="bg-[#70010B] p-6 rounded-lg shadow-lg w-80 overflow-y-auto text-white">
+          <div class="flex items-center justify-between ">
+            <h1 class="text-lg font-semibold mb-4 ">Create New Player</h1>
+            <img src="./assets/x.svg" onclick="onCloseCreatePlayer()" class="w-8 cursor-pointer">
+          </div>
+
+
+          <form id="playerForm">
+            <div class="">
+              <label for="nom" class="block font-medium ">Name</label>
+              <input id="nom"
+                type="text"
+                name="name"
+                class="w-full px-4 w-full bg-white border border-gray-600 rounded-md mb-2 text-black"
+                placeholder="Player Name"
+                required
+              />
+              <small class="text-red-500 hidden"></small>
+            </div>
+            <div >
+              <label for="url" class="block font-medium ">Photo URL</label>
+              <input id="url"
+                type="url"
+                name="photo"
+                class="w-full  px-4 w-full bg-white border border-gray-600 rounded-md mb-2 text-black"
+                placeholder="Photo URL"
+              />
+              <small class="text-red-500 hidden"></small>
+            </div>
+            <div>
+              <label for="flag" class="block font-medium ">Flag</label>
+              <input id="flag"
+                type="url"
+                name="flag"
+                class="w-full  px-4 w-full bg-white border border-gray-600 rounded-md mb-2 text-black"
+                placeholder="Flag URL"
+              />
+              <small class="text-red-500 hidden"></small>
+            </div>
+            <div>
+              <label for="logo" class="block font-medium">Logo</label>
+              <input id="logo"
+                type="url"
+                name="logo"
+                class="w-full px-4 w-full bg-white border border-gray-600 rounded-md mb-2 text-black"
+                placeholder="Logo URL"
+              />
+              <small class="text-red-500 hidden"></small>
+            </div>
+            <div >
+                <label for="ratibng" class="block font-medium ">Rating</label>
+                <input id="ratibng"
+                  type="number"
+                  name="rating"
+                  class="w-full px-4 w-full bg-white border border-gray-600 rounded-md mb-2 text-black"
+                  placeholder="rating"
+                />
+              <small class="text-red-500 hidden"></small>
+            </div>
+            <div >
+              <label for="positionSelect" class="block font-medium">Position</label>
+              <select 
+                name="position"
+                id="positionSelect"
+                class="w-full px-4 w-full bg-white border border-gray-600 rounded-md mb-2 text-black"
+                required
+              >
+                <option value="" disabled selected>Select Position</option>
+                <option value="GK">Goalkeeper (GK)</option>
+                <option value="CM">Central Midfielder (CM)</option>
+                <option value="ST">Striker (ST)</option>
+                <option value="CB">Center back (CB)</option>
+                <option value="LB">Left back (LB)</option>
+                <option value="RB">Right back (RB)</option>
+                <option value="LW">Left wing (LW)</option>
+                <option value="RW">Right wing (RW)</option>
+              </select>
+              <small class="text-red-500 hidden"></small>
+            </div>
+            <div id="dynamicFields" class="grid grid-cols-2 gap-1"></div>
+            <button
+              type="submit"
+              class=" w-full bg-gray-700 text-white px-4 py-2  rounded-md hover:bg-gray-600"
+            >
+              Create Player
+            </button>
+          </form>
+          
+        </div>
+      </div>
+      <footer>
+        <!-- top footer -->
+        <section class=" flex flex-col md:flex-row items-center justify-between px-8 md:px-40 mb-5 ">
+            <img src="img/logo.png" width="100" alt="logo" >
+            <div class="text-[#F7E0A1]">
+                <h3 class="text-lg font-semibold">Follow us</h3>
+                <div class="flex space-x-4">
+                    <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                    <a href="#"><i class='bx bxl-pinterest'></i></a>
+                    <a href="#"><i class='bx bxl-whatsapp'></i></a>
+                    <a href="#"><i class='bx bxl-instagram-alt'></i></a>
+                </div>
+            </div>
+        </section>
+        <div class="px-10">
+            <hr class="border-t border-[#F7E0A1] opacity-80">
+        </div>
+        
+    
+        <!-- footer-body -->
+        <section class="relative  flex flex-col md:flex-row justify-between gap-10 sm:gap-20 px-14 py-10">
+            <div class="flex flex-col sm:flex-row gap-10 md:gap-20 w-full">
+                <div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">LATEST SQUADS</h3>
+                    <hr class="border-t-4 border-[#F7E0A1] opacity-80 w-20 ">
+                    <div class="text-lg">
+                        <div><a href="#" class="text-white ">FC Pro</a></div>
+                        <div><a href="#" class="text-white ">Team Of The Week 10</a></div>
+                        <div><a href="#" class="text-white">Track Stars</a></div>
+                        <div><a href="#" class="text-white">Team Of The Week 9</a></div>
+                        <div><a href="#" class="text-white">Ballon d'Or</a></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">USEFUL LINKS</h3>
+                    <hr class="border-t-4 border-[#F7E0A1] opacity-80 w-20 ">
+                    <div class="text-lg">
+                        <a href="#" class="text-white hover:text-customDarkBrown">Squad Builder</a>
+                        <div><a href="#" class="text-white ">SBC</a></div>
+                        <div><a href="#" class="text-white ">EA FC 25 Players</a></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="flex flex-col sm:flex-row gap-10 md:gap-10 sm:gap-4 w-full">
+                <div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">FUTBIN APPLICATIONS</h3>
+                    <hr class="border-t-4 border-[#F7E0A1] opacity-80 w-20 ">
+                    <div  class="text-lg">
+                        <a href="#" class="text-white hover:text-customDarkBrown">FUTBIN For Android</a>
+                        <div><a href="#" class="text-white hover:text-customDarkBrown">FUTBIN For Ios</a>
+                        </div><a href="#" class="text-white hover:text-customDarkBrown">More Details</a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+        </section>
+        <div class="px-10">
+            <hr class="border-t border-[#F7E0A1] opacity-80">
+        </div>
+    
+        <!-- footer-bottom -->
+        <div class="text-center pt-4 ">
+            <p class="text-[#F7E0A1] font-semibold bg-[#70010B] p-4">© 2014-2024 Copyright
+                FUTBIN.com
+                All FIFA assets are property of EA Sports.
+                TOS
+                Privacy Policy
+                Cookie Policy
+                Contact</p>
+        </div>
+        <div class="text-center pb-16">
+            <p class="text-white">Update privacy preferences</p>
+        </div>
+    </footer>
+      
+    <script src="./script.js"></script>
+  </body>
+</html>
