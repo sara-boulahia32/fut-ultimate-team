@@ -426,18 +426,19 @@ menuButton.addEventListener('click', () => {
         setTimeout(() => {
             menu.classList.remove('-translate-x-full');
             menu.classList.add('translate-x-0');
-        }, 10); 
+        }, 50); 
     } else {
         menu.classList.remove('translate-x-0');
         menu.classList.add('-translate-x-full');
         setTimeout(() => {
             menu.classList.add('hidden');
-        }, 300); 
+        }, 500); 
     }
 });
 
 let activePlayer = [];
 
+// substitues
 let filteredPlayer = players;
 
 let existName = null;
