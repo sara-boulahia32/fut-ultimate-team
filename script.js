@@ -811,6 +811,41 @@ document.getElementById("playerForm").addEventListener("submit", function (e) {
 
   let isValid = true;
 
+  // Name validation
+  if (
+    nameInput.value.trim().length < 2 ||
+    /[^a-zA-Z\s]/.test(nameInput.value.trim()) || /^\s*$/.test(nameInput.value)
+  ) {
+    nameError.textContent = "Invalid name. Please enter at least 2 letters.";
+    nameError.classList.remove("hidden");
+    isValid = false;
+  } else {
+    nameError.textContent = "";
+    nameError.classList.add("hidden");
+  }
+
+  // Photo URL validation
+  const photoRegex =
+    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+  if (!photoInput.value.trim()) {
+      photoError.textContent = "The photo URL is required.";
+      photoError.classList.remove("hidden");
+      isValid = false;
+  }  else if (photoInput.value && !photoRegex.test(photoInput.value.trim())) {
+    photoError.textContent = "Please provide a valid URL.";
+    photoError.classList.remove("hidden");
+    isValid = false;
+  } else {
+    photoError.textContent = "";
+    photoError.classList.add("hidden");
+  }
+  if (!isValid) {
+    return;
+  }
+  
+
+  
+
   players.push(playerData);
   onCloseCreatePlayer();
 });
