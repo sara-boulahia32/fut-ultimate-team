@@ -417,6 +417,27 @@ const players = [
   },
 ];
 
+const menuButton = document.getElementById('menu-button');
+const menu = document.getElementById('menu');
+
+menuButton.addEventListener('click', () => {
+    if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        setTimeout(() => {
+            menu.classList.remove('-translate-x-full');
+            menu.classList.add('translate-x-0');
+        }, 10); 
+    } else {
+        menu.classList.remove('translate-x-0');
+        menu.classList.add('-translate-x-full');
+        setTimeout(() => {
+            menu.classList.add('hidden');
+        }, 300); 
+    }
+});
+
+
+
 let activePlayer = [];
 
 let filteredPlayer = players;
@@ -484,7 +505,7 @@ const deletePlayer = (target) => {
 const editPlayer = (player) => {
   existName = player.name.split(" ")[0]; 
   const targetPosition = document.querySelector(`[data-name='${existName}']`);
-  sideBar_title.textContent = "Switch Players";
+  sideBar_title.textContent = "Switch Player";
   
   activePlayer = activePlayer.filter((pl) => pl.name !== player.name);
   openListPlayers();
@@ -508,25 +529,50 @@ const createPlayerCard = (player) => {
   card.className =
     "w-16 sm:w-24 md:w-30 group lg:w-32 xl:w-36 aspect-[1/1.4] relative z-20 cursor-pointer hover:scale-[1.3] transition-transform activePlayers";
 
+    const isGoalkeeper = player.position === "GK";
   card.innerHTML = `
-        
-        
         <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" alt="Player badge" class="absolute w-full h-full z-10"/>
         <div class="relative z-20 w-full h-full ">
-        <div class="absolute hidden z-30 group-hover:flex group-hover:flex-col w-[80%] lg:w-[100%] items-end justify-between p-2 right-0 lg:-top-[3%] ">
+        <div class="absolute hidden z-30 group-hover:flex group-hover:flex-col w-[80%] lg:w-[100%] items-end justify-between pr-2 lg:pr-4 top-0 right-0 space-y-4 md:space-y-[20px] lg:space-y-[25px] lg:top-[10px]">
         </div>
-            <img src="${player.photo}" alt="Player Photo" class="absolute w-[60%] top-[10%] right-[20%]"/>
-            <div class="text-xs text-white ">
+            <img src="${player.photo}" alt="Player Photo" class="absolute w-[50%] lg:w-[60%]  top-[20%] lg:top-[15%] right-[20%]"/>
+            <div class="text-[6px] md:text-[11px] lg:text-[14px] text-white pt-[15px] md:pt-[22px] lg:pt-[35px] pl-[8px] md:pl-[12px] lg:pl-[18px]">
                         <p class="font-extrabold ">${player.rating}</p>
                         <p class="font-semibold">${player.position}</p>
-                        <img src="${player.flag}" alt="" class="w-[10px]">
-                        <img src="${player.logo}" alt="" class="w-[10px]">
+                        <img src="${player.flag}" alt="" class="w-[10px] md:w-[12px]">
+                        <img src="${player.logo}" alt="" class="w-[10px] md:w-[12px] ">
                     </div>
-                <div class="absolute top-[65%] w-full text-center text-white">
-                  <p class="text-[50%] max-w-[70%] mx-auto w-full truncate lg:text-[80%] font-semibold">${player.name}</p>
+                <div class="absolute top-[60%] w-full text-center text-white">
+                  <p class="text-[30%] md:text-[55%] lg:text-[70%] max-w-[70%] mx-auto w-full truncate  font-semibold">${player.name}</p>
                 
-                <div class="text-[9px] text-[#393218] flex flex-col gap-[1px] justify-center items-center">
-                    <div class="flex gap-[2px] text-white">
+                 <div class="text-[5px] md:text-[8px] lg:text-[11px] text-[#393218] flex flex-col gap-0 justify-center items-center">
+                  ${
+                      isGoalkeeper
+                        ? `
+                    <div class="flex gap-[1px] text-white">
+                        <p>DI</p>
+                        <p>HA</p>
+                        <p>KI</p>
+                        <p>RE</p>
+                        <p>SP</p>
+                        <p>PO</p>
+                    </div>
+                    <div class="flex gap-[1px] text-white">
+                        <p class="font-extrabold">${player.diving}</p>
+                        <p class="font-extrabold">${player.handling}</p>
+                        <p class="font-extrabold">${player.kicking}</p>
+                        <p class="font-extrabold">${player.reflexes}</p>
+                        <p class="font-extrabold">${player.speed}</p>
+                        <p class="font-extrabold">${player.positioning}</p>
+                    </div>
+            </div>
+            
+        </div>
+  `
+                        : `
+        
+                <div class="text-[5px] md:text-[8px] lg:text-[11px] text-[#393218] flex flex-col gap-0 justify-center items-center">
+                    <div class="flex gap-[1px] text-white">
                         <p>PA</p>
                         <p>SH</p>
                         <p>PA</p>
@@ -534,18 +580,21 @@ const createPlayerCard = (player) => {
                         <p>DE</p>
                         <p>PH</p>
                     </div>
-                    <div class="flex gap-[2px] text-white">
+                    <div class="flex gap-[1px] text-white">
                         <p class="font-extrabold">${player.passing}</p>
                         <p class="font-extrabold">${player.shooting}</p>
                         <p class="font-extrabold">${player.pace}</p>
                         <p class="font-extrabold">${player.dribbling}</p>
                         <p class="font-extrabold">${player.defending}</p>
                         <p class="font-extrabold">${player.physical}</p>
+                        `
+                  }
                     </div>
             </div>
             
         </div>
         
+       
     `;
 
   const actionMenu = card.querySelector(".absolute.hidden");
@@ -553,12 +602,12 @@ const createPlayerCard = (player) => {
 
   const editpl = document.createElement("img");
   editpl.src = "./assets/sync.png";
-  editpl.className = "w-4 animate-spin";
+  editpl.className = "w-2 md:w-4 animate-spin";
   editpl.onclick = () => editPlayer(player, card);
 
   const deletPl = document.createElement("img");
   deletPl.src = "./assets/trash.svg";
-  deletPl.className = "w-4";
+  deletPl.className = "w-2 md:w-4";
   deletPl.onclick = () => deletePlayer(card);
 
   actionMenu.appendChild(seeDet);
@@ -569,6 +618,11 @@ const createPlayerCard = (player) => {
 };
 
 const appendPlayer = (player, targetElement) => {
+  if (activePlayer.length >= 11) {
+    console.warn("Maximum players reached on the field.");
+    return;
+  }
+  
   openListPlayers();
   if (!targetElement) {
     console.error("Invalid target element.");
@@ -599,38 +653,68 @@ const renderListPlayers = (targetPosition) => {
     playerCard.className =
       "flex flex-col py-3 cursor-pointer  rounded-lg bg-[url('img/8cdd9360-e77b-44c4-95cc-66d004addd93.png')] bg-cover bg-center w-16 sm:w-24 md:w-30 lg:w-32 aspect-[1/1.4] relative hover:scale-[1.3] cursor-pointer transition-transform";
 
-    playerCard.innerHTML = `
-            <div class="flex pl-2 lg:pl-4 mt-0 lg:mt-4 ">
-                    <div class="text-xs text-white mt-2">
-                        <p class="font-extrabold">${player.rating}</p>
-                        <p class="font-semibold">${player.position}</p>
-                        <img src="${player.flag}" alt="" class="w-[10px]">
-                        <img src="${player.logo}" alt="" class="w-[10px]">
-                    </div>
-                    <div class="text-center text-xs text-white font-extra-bold">
-                        <img src="${player.photo}" alt="${player.name}" class="lg:w-[70px]">
-                        <p class="font-extrabold text-[9px]">${player.name}</p>
-                    </div>
-                </div>
-                <div class="text-[9px] text-white flex flex-col gap-[2px] justify-center items-center">
-                    <div class="flex gap-[2px]">
-                        <p>PA</p>
-                        <p>SH</p>
-                        <p>PA</p>
-                        <p>DR</p>
-                        <p>DE</p>
-                        <p>PH</p>
-                    </div>
-                    <div class="flex gap-[2px]">
-                        <p class="font-extrabold">${player.passing}</p>
-                        <p class="font-extrabold">${player.shooting}</p>
-                        <p class="font-extrabold">${player.pace}</p>
-                        <p class="font-extrabold">${player.dribbling}</p>
-                        <p class="font-extrabold">${player.defending}</p>
-                        <p class="font-extrabold">${player.physical}</p>
-                    </div>
-                </div>
-      `;
+      const isGoalkeeper = player.position === "GK";
+      playerCard.innerHTML = `
+              <div class="flex pl-2 lg:pl-4 mt-0 lg:mt-4 ">
+                      <div class="text-[6px] md:text-[11px] lg:text-[14px] text-white pt-[15px] md:pt-[22px] lg:pt-[35px] pl-[8px] md:pl-[12px] lg:pl-[18px]">
+                          <p class="font-extrabold">${player.rating}</p>
+                          <p class="font-semibold">${player.position}</p>
+                          <img src="${player.flag}" alt="" class="w-[10px] md:w-[12px]">
+                          <img src="${player.logo}" alt="" class="w-[10px] md:w-[12px]">
+                      </div>
+                      <div class="text-center text-xs text-white font-extra-bold">
+                          <img src="${player.photo}" alt="${player.name}" class="absolute w-[50%] lg:w-[60%]  top-[20%] lg:top-[15%] right-[20%]">
+                          <p class="font-extrabold text-[9px]">${player.name}</p>
+                      </div>
+                  </div>
+                     ${
+                        isGoalkeeper
+                          ? `
+                   <div class="text-[5px] md:text-[8px] lg:text-[11px] text-[#393218] flex flex-col gap-0 justify-center items-center">
+                      <div class="flex gap-[2px]">
+                          <p>DI</p>
+                          <p>HA</p>
+                          <p>KI</p>
+                          <p>RE</p>
+                          <p>SP</p>
+                          <p>PO</p>
+                      </div>
+                      <div class="flex gap-[1px] text-white">
+                          <p class="font-extrabold">${player.diving}</p>
+                          <p class="font-extrabold">${player.handling}</p>
+                          <p class="font-extrabold">${player.kicking}</p>
+                          <p class="font-extrabold">${player.reflexes}</p>
+                          <p class="font-extrabold">${player.speed}</p>
+                          <p class="font-extrabold">${player.positioning}</p>
+                      </div>
+                  </div>
+  
+   `
+                          : `
+  
+                  <div class="text-[5px] md:text-[8px] lg:text-[11px] text-[#393218] flex flex-col gap-0 justify-center items-center">
+                      <div class="flex gap-[1px] text-white">
+                          <p>PA</p>
+                          <p>SH</p>
+                          <p>PA</p>
+                          <p>DR</p>
+                          <p>DE</p>
+                          <p>PH</p>
+                      </div>
+                      <div class="flex gap-[1px] text-white">
+                          <p class="font-extrabold">${player.passing}</p>
+                          <p class="font-extrabold">${player.shooting}</p>
+                          <p class="font-extrabold">${player.pace}</p>
+                          <p class="font-extrabold">${player.dribbling}</p>
+                          <p class="font-extrabold">${player.defending}</p>
+                          <p class="font-extrabold">${player.physical}</p>
+                                `
+                    }
+                      </div>
+                  </div>
+  
+                    
+        `;
 
     if (targetPosition) {
       playerCard.onclick = () => {
@@ -674,6 +758,7 @@ document.getElementById("positionSelect").addEventListener("change", (e) => {
   let dynamicFields = document.getElementById("dynamicFields");
 
   dynamicFields.innerHTML = "";
+  
 
   if (e.target.value === "GK") {
     positionAttributes["GK"].forEach((attr) => {
@@ -725,41 +810,6 @@ document.getElementById("playerForm").addEventListener("submit", function (e) {
   const photoError = photoInput.nextElementSibling;
 
   let isValid = true;
-
-  // Name validation
-  if (
-    nameInput.value.trim().length < 2 ||
-    /[^a-zA-Z\s]/.test(nameInput.value.trim()) || /^\s*$/.test(nameInput.value)
-  ) {
-    nameError.textContent = "Invalid name. Please enter at least 2 letters.";
-    nameError.classList.remove("hidden");
-    isValid = false;
-  } else {
-    nameError.textContent = "";
-    nameError.classList.add("hidden");
-  }
-
-  // Photo URL validation
-  const photoRegex =
-    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
-  if (!photoInput.value.trim()) {
-      photoError.textContent = "The photo URL is required.";
-      photoError.classList.remove("hidden");
-      isValid = false;
-  }  else if (photoInput.value && !photoRegex.test(photoInput.value.trim())) {
-    photoError.textContent = "Please provide a valid URL.";
-    photoError.classList.remove("hidden");
-    isValid = false;
-  } else {
-    photoError.textContent = "";
-    photoError.classList.add("hidden");
-  }
-  if (!isValid) {
-    return;
-  }
-  
-
-  
 
   players.push(playerData);
   onCloseCreatePlayer();
