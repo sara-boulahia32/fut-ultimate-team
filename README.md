@@ -1,4 +1,4 @@
-# FUT-CHUMPIONS
+## FUT-CHUMPIONS
 # Player Team Builder
 # Project Overview
 
@@ -13,7 +13,7 @@ Enable dynamic player management with strict rules for team composition.
 
 Offer a seamless user experience across all devices with a responsive design.
 
-# Features
+## Features
 # Dynamic Player Management
 
 Add, edit, and remove players with ease.
@@ -34,12 +34,6 @@ Use a modal window for adding players with validation to avoid duplicates.
 
 Display errors and messages in real-time.
 
-# Data Persistence
-
-Utilize localStorage to save player and team data locally.
-
-Retrieve saved teams upon reloading the page.
-
 # Responsive Design
 
 Adapt the interface for all screen sizes, ensuring usability on desktop, tablet, and mobile.
@@ -50,7 +44,7 @@ Implement drag-and-drop functionality for positioning or swapping players.
 
 Use animations to enhance the user experience.
 
-# Technologies Used
+## Technologies Used
 # Frontend
 
 HTML5: Structuring the application.
