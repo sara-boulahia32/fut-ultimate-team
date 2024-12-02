@@ -436,6 +436,11 @@ menuButton.addEventListener('click', () => {
     }
 });
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 73d7d10b967d855ddac5d540e794e78248cfd221
 let activePlayer = [];
 
 let filteredPlayer = players;
@@ -653,6 +658,7 @@ const renderListPlayers = (targetPosition) => {
 
       const isGoalkeeper = player.position === "GK";
       playerCard.innerHTML = `
+<<<<<<< HEAD
               <div class="flex pl-0 mt-0 lg:mt-4  ">
                       <div class="text-[5px] md:text-[10px] lg:text-[14px] text-white pt-[12px] lg:pt-[12px] pl-[8px] md:pl-[12px] lg:pl-[18px]">
                           <p class="font-extrabold">${player.rating}</p>
@@ -665,11 +671,29 @@ const renderListPlayers = (targetPosition) => {
                           
                       </div>
                   </div><p class=" text-center font-extrabold text-[5px] md:text-[8px] lg:text-[10px]">${player.name}</p>
+=======
+              <div class="flex pl-2 lg:pl-4 mt-0 lg:mt-4 ">
+                      <div class="text-[6px] md:text-[11px] lg:text-[14px] text-white pt-[15px] md:pt-[22px] lg:pt-[35px] pl-[8px] md:pl-[12px] lg:pl-[18px]">
+                          <p class="font-extrabold">${player.rating}</p>
+                          <p class="font-semibold">${player.position}</p>
+                          <img src="${player.flag}" alt="" class="w-[10px] md:w-[12px]">
+                          <img src="${player.logo}" alt="" class="w-[10px] md:w-[12px]">
+                      </div>
+                      <div class="text-center text-xs text-white font-extra-bold">
+                          <img src="${player.photo}" alt="${player.name}" class="absolute w-[50%] lg:w-[60%]  top-[20%] lg:top-[15%] right-[20%]">
+                          <p class="font-extrabold text-[9px]">${player.name}</p>
+                      </div>
+                  </div>
+>>>>>>> 73d7d10b967d855ddac5d540e794e78248cfd221
                      ${
                         isGoalkeeper
                           ? `
                    <div class="text-[5px] md:text-[8px] lg:text-[11px] text-[#393218] flex flex-col gap-0 justify-center items-center">
+<<<<<<< HEAD
                       <div class="flex gap-[1px] text-white">
+=======
+                      <div class="flex gap-[2px]">
+>>>>>>> 73d7d10b967d855ddac5d540e794e78248cfd221
                           <p>DI</p>
                           <p>HA</p>
                           <p>KI</p>
