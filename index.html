@@ -3,24 +3,30 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="description" content="Concevoir une application web de gestion d'équipe Ultimate Team pour EA FC 25">
+    <meta name="keywords" content="foot, formation, Real, equipe, Ultimate Team">
+    <meta name="author" content="Sara">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
   <title>FUT Champions Web App Ultimate Team</title>
-    <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="img/logo-removebg-preview.png" type="image/x-icon">
   </head>
-  <body class=" items-center justify-center h-screen bg-[#7F000F]">
-    <div class="flex justify-between items-center px-16">
+  <body class=" items-center justify-center h-screen bg-red-950 ">
+    
+    <div class="flex justify-between items-center px-16 bg-[#7F000F]">
             <a href="#">
-                <img src="img/logo.png" class="max-w-full h-auto w-28" alt="logo">
+                <img src="img/logo-removebg-preview.png" class="max-w-full h-auto w-20" alt="logo">
             </a>
             <div class="block lg:hidden">
-                <button id="menu-button" class="text-gray-500 focus:outline-none" onclick="myFunction()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
+          <button id="menu-button" class="text-gray-500 focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              </svg>
+          </button>
+      </div>
             <div class="hidden lg:flex space-x-8">
                 <a href="index2.html" class="font-semibold lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">Players</a>
                 <a href="more2.html" class="font-semibold  lg:text-lg text-[#F7E0A1] p-2 hover:text-[#70010B]">Squad builder</a>
@@ -31,20 +37,27 @@
                 <a href="#" class="font-semibold text-lg bg-[#F7E0A1] rounded-lg py-2 px-3 hover:shadow-2xl hover:scale-105 transition">Sign in</a>
             </div>
         </div>
-        <div id="menu" class="lg:hidden  flex-col space-y-2 bg-[#7F000F] px-4 py-2">
-            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Squad builder</a></div>
-            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown ">SBCs</a></div>
-            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Market</a></div>
-            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Evolutions</a></div>
-            <div><a href="#" class="text-[#F7E0A1] hover:text-customDarkBrown">Sign in</a></div>
-        </div>
+        
+        
+      
+      <div id="menu" class="fixed top-0 left-0 h-screen w-[70%] bg-[#7F000F] px-4 py-2 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex-col justify-center items-center space-y-4 z-50 hidden pt-[20%]">
+        <div class="text-center space-y-8">
+        <div><a href="#" class="font-semibold text-white hover:text-[#F7E0A1]">Squad builder</a></div>
+          <div><a href="#" class="font-semibold text-white hover:text-[#F7E0A1]">SBCs</a></div>
+          <div><a href="#" class="font-semibold text-white hover:text-[#F7E0A1]">Market</a></div>
+          <div><a href="#" class="font-semibold text-white hover:text-[#F7E0A1]">Evolutions</a></div>
+          <div><a href="#" class="font-semibold text-white hover:bg-[#F7E0A1] hover:rounded-lg hover:py-2 hover:px-3 hover:shadow-2xl hover:scale-105 transition hover:text-[#7F000F]">Sign in</a></div>
+      </div>
+      </div>
+      
+      
     
 
 
     <main class="container mx-auto">
       <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
         <div class="w-full md:w-2/3  p-4 rounded-lg lg:ml-16 ">
-          <div class="flex mb-8 justify-between">
+          <div class="flex mb-16 mt-4 justify-between">
             <h2 class="text-2xl font-semibold mb-4 text-white">Team Formation</h2> 
             <div>
                 <button
@@ -58,7 +71,7 @@
           </div>
           <!-- Container for   Stadium -->
           <div class="relative w-fit h-fit ">
-            <img src="./assets/stadium_background.webp" alt="" class=" w-[70vw] h-[90vh] border-4 border-[#F7E0A1] rounded-lg md:w-[40vw] md:h-[90vh] lg:w-[50vw] lg:h-[95vh] lg:gap-4">
+            <img src="./assets/stadium_background.webp" alt="" class=" w-[90vw] h-[80vh] border-4 border-[#F7E0A1] rounded-lg md:w-[70vw] md:h-[80vh] lg:w-[70vw] lg:h-[90vh] lg:gap-4">
 
             <div class="absolute w-full h-full inset-0 flex flex-col justify-between">
               <div
@@ -418,7 +431,7 @@
       <footer>
         <!-- top footer -->
         <section class=" flex flex-col md:flex-row items-center justify-between px-8 md:px-40 mb-5 ">
-            <img src="img/logo.png" width="100" alt="logo" >
+            <img src="img/logo-removebg-preview.png" width="100" alt="logo" >
             <div class="text-[#F7E0A1]">
                 <h3 class="text-lg font-semibold">Follow us</h3>
                 <div class="flex space-x-4">
@@ -441,7 +454,7 @@
                     <h3 class="text-2xl font-bold mb-3 text-white">LATEST SQUADS</h3>
                     <hr class="border-t-4 border-[#F7E0A1] opacity-80 w-20 ">
                     <div class="text-lg">
-                        <div><a href="#" class="text-white ">FC Pro</a></div>
+                        <div><a href="#" class="text-white hover:underlined">FC Pro</a></div>
                         <div><a href="#" class="text-white ">Team Of The Week 10</a></div>
                         <div><a href="#" class="text-white">Track Stars</a></div>
                         <div><a href="#" class="text-white">Team Of The Week 9</a></div>
