@@ -761,13 +761,13 @@ document.getElementById("positionSelect").addEventListener("change", (e) => {
   if (e.target.value === "GK") {
     positionAttributes["GK"].forEach((attr) => {
       const field = document.createElement("div");
-      field.className = "mb-3";
+      field.className = "mb-0";
       field.innerHTML = `
-        <label for="${attr.label}" class="block font-medium mb-2">${attr.label}</label>
+        <label for="${attr.label}" class="block font-medium ">${attr.label}</label>
         <input id="${attr.label}"
           type="${attr.type}"
           name="${attr.name}"
-          class="w-full mt-1 px-4 w-full bg-white border border-gray-600 rounded-md mb-4 text-black"
+          class="w-full px-4 w-full bg-white border border-gray-600 rounded-md text-black"
           placeholder="${attr.label}"
         />
       `;
@@ -781,7 +781,7 @@ document.getElementById("positionSelect").addEventListener("change", (e) => {
           <input
             type="${attr.type}"
             name="${attr.name}"
-            class="w-full px-4 w-full bg-white border border-gray-600 rounded-md mb-2 text-black"
+            class="w-full px-4 w-full bg-white border border-gray-600 rounded-md text-black"
             placeholder="${attr.label}"
           />
         `;
