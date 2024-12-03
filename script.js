@@ -826,6 +826,10 @@ document.getElementById("playerForm").addEventListener("submit", function (e) {
   if (!isValid) {
     return;
   }
+  nameInput.value="";
+  photoInput.value="";
+  urlInput.value="";
+  flagInput.value="";
   players.push(playerData);
   onCloseCreatePlayer();
 });
