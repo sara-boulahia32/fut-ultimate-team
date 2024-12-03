@@ -439,6 +439,7 @@ menuButton.addEventListener('click', () => {
 let activePlayer = [];
 
 // substitues
+
 let filteredPlayer = players;
 
 let existName = null;
@@ -447,8 +448,23 @@ let playerList = document.querySelector(".players_list");
 
 let sideBar_title = document.getElementById("sideBar_title");
 
+let createPlayerPop = document.getElementById("createPop");
+
+let playerForm = document.getElementById("playerForm"); 
+
 const openListPlayers = () => {
   document.getElementById("players_list").toggleAttribute("open", true);
+};
+
+const closeListPlayers = () => {
+  document.getElementById("players_list").toggleAttribute("open", false);
+};
+
+const onOpenCreatePlayer = () => {
+  createPlayerPop.toggleAttribute("open", true);
+};
+const onCloseCreatePlayer = () => {
+  createPlayerPop.toggleAttribute("open", false);
 };
 
 const checkPlaceholders = () => {
@@ -468,9 +484,7 @@ const checkPlaceholders = () => {
 };
 checkPlaceholders();
 
-const closeListPlayers = () => {
-  document.getElementById("players_list").toggleAttribute("open", false);
-};
+
 
 
 const deletePlayer = (target) => {
@@ -609,19 +623,13 @@ const createPlayerCard = (player) => {
   deletPl.className = "w-2 md:w-4";
   deletPl.onclick = () => deletePlayer(card);
 
-  actionMenu.appendChild(seeDet);
   actionMenu.appendChild(editpl);
   actionMenu.appendChild(deletPl);
 
   return card;
 };
 
-const appendPlayer = (player, targetElement) => {
-  if (activePlayer.length >= 11) {
-    console.warn("Maximum players reached on the field.");
-    return;
-  }
-  
+const appendPlayer = (player, targetElement) => {  
   openListPlayers();
   if (!targetElement) {
     console.error("Invalid target element.");
@@ -725,14 +733,7 @@ const renderListPlayers = (targetPosition) => {
   });
 };
 
-let createPlayerPop = document.getElementById("createPop");
 
-const onOpenCreatePlayer = () => {
-  createPlayerPop.toggleAttribute("open", true);
-};
-const onCloseCreatePlayer = () => {
-  createPlayerPop.toggleAttribute("open", false);
-};
 
 const positionAttributes = {
   GK: [
@@ -791,7 +792,6 @@ document.getElementById("positionSelect").addEventListener("change", (e) => {
   }
 });
 
-let playerForm = document.getElementById("playerForm");
 
 document.getElementById("playerForm").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -823,28 +823,9 @@ document.getElementById("playerForm").addEventListener("submit", function (e) {
     nameError.classList.add("hidden");
   }
 
-  // Photo URL validation
-  const photoRegex =
-    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-])\/?$/;
-  if (!photoInput.value.trim()) {
-      photoError.textContent = "The photo URL is required.";
-      photoError.classList.remove("hidden");
-      isValid = false;
-  }  else if (photoInput.value && !photoRegex.test(photoInput.value.trim())) {
-    photoError.textContent = "Please provide a valid URL.";
-    photoError.classList.remove("hidden");
-    isValid = false;
-  } else {
-    photoError.textContent = "";
-    photoError.classList.add("hidden");
-  }
   if (!isValid) {
     return;
   }
-  
-
-  
-
   players.push(playerData);
   onCloseCreatePlayer();
 });
