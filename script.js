@@ -421,6 +421,7 @@ const menuButton = document.getElementById('menu-button');
 const menu = document.getElementById('menu');
 
 menuButton.addEventListener('click', () => {
+  console.log(players)
     if (menu.classList.contains('hidden')) {
         menu.classList.remove('hidden');
         setTimeout(() => {
@@ -443,6 +444,8 @@ let activePlayer = [];
 let filteredPlayer = players;
 
 let existName = null;
+
+// show substitues
 
 let playerList = document.querySelector(".players_list");
 
@@ -471,6 +474,8 @@ const checkPlaceholders = () => {
   document.querySelectorAll(".placeholder_player").forEach((ele) => {
     ele.onclick = () => {
       const targetPosition = ele;
+      console.log(targetPosition)
+      console.log(targetPosition.id)
       sideBar_title.textContent = "Substitutes Player";
       filteredPlayer = players.filter(
         (player) =>
@@ -482,6 +487,8 @@ const checkPlaceholders = () => {
     };
   });
 };
+
+
 checkPlaceholders();
 
 
@@ -516,21 +523,21 @@ const deletePlayer = (target) => {
 };
 
 const editPlayer = (player) => {
+  // identifier le joueur à remplacer
   existName = player.name.split(" ")[0]; 
   const targetPosition = document.querySelector(`[data-name='${existName}']`);
   sideBar_title.textContent = "Switch Player";
-  
+  // supprimer de la liste des  active players
   activePlayer = activePlayer.filter((pl) => pl.name !== player.name);
   openListPlayers();
+  // calcul des joueurs dispo pour remplacer 
   filteredPlayer = players.filter(
     (pl) =>
       pl.position === targetPosition.id && pl.name.split(" ")[0] !== existName
   );
-
+  // affiche liste des remplacents filtrés 
   if (targetPosition) {
     renderListPlayers(targetPosition);
-  } else {
-    console.error("Target position not found for editing.");
   }
   existName = null;
 };
@@ -546,7 +553,7 @@ const createPlayerCard = (player) => {
   card.innerHTML = `
         <img src="img/8cdd9360-e77b-44c4-95cc-66d004addd93.png" alt="Player badge" class="absolute w-full h-full z-10"/>
         <div class="relative z-20 w-full h-full ">
-        <div class="absolute hidden z-30 group-hover:flex group-hover:flex-col w-[80%] lg:w-[100%] items-end justify-between pr-2 lg:pr-4 top-0 right-0 space-y-4 md:space-y-[20px] lg:space-y-[25px] lg:top-[10px]">
+        <div class="hover-menu absolute hidden z-30 group-hover:flex group-hover:flex-col w-[80%] lg:w-[100%] items-end justify-between pr-2 lg:pr-4 top-0 right-0 space-y-4 md:space-y-[20px] lg:space-y-[25px] lg:top-[10px]">
         </div>
             <img src="${player.photo}" alt="Player Photo" class="absolute w-[50%] lg:w-[60%]  top-[20%] lg:top-[15%] right-[20%]"/>
             <div class="text-[6px] md:text-[11px] lg:text-[14px] text-white pt-[15px] md:pt-[22px] lg:pt-[35px] pl-[8px] md:pl-[12px] lg:pl-[18px]">
@@ -610,8 +617,7 @@ const createPlayerCard = (player) => {
        
     `;
 
-  const actionMenu = card.querySelector(".absolute.hidden");
-  const seeDet = document.createElement("img");
+  const actionMenu = card.querySelector(".hover-menu");
 
   const editpl = document.createElement("img");
   editpl.src = "./assets/sync.png";
@@ -630,27 +636,15 @@ const createPlayerCard = (player) => {
 };
 
 const appendPlayer = (player, targetElement) => {  
-  openListPlayers();
-  if (!targetElement) {
-    console.error("Invalid target element.");
-    return;
-  }
-
-  if (existName && typeof existName === "string") {
-    activePlayer = players.filter((pl) => pl.name.split(" ")[0] !== existName);
-  }
-
+  
   const newCard = createPlayerCard(player);
   activePlayer.push(player);
 
   targetElement.replaceWith(newCard);
 
-  existName = null;
   closeListPlayers();
 };
 
-
-// substitues
 
 const renderListPlayers = (targetPosition) => {
   playerList.innerHTML = "";
@@ -722,10 +716,11 @@ const renderListPlayers = (targetPosition) => {
   
                     
         `;
-
+    // joueur selectionné
     if (targetPosition) {
       playerCard.onclick = () => {
         appendPlayer(player, targetPosition);
+        compteurJoueurStad();
       };
     }
 
@@ -800,13 +795,15 @@ document.getElementById("playerForm").addEventListener("submit", function (e) {
   let formData = new FormData(playerForm);
   let playerData = Object.fromEntries(formData.entries());
 
+  
+
   const nameInput = document.querySelector("input[name='name']");
   const photoInput = document.querySelector("input[name='photo']");
   const urlInput = document.querySelector("input[name='flag']");
   const flagInput = document.querySelector("input[name='logo']");
 
   const nameError = nameInput.nextElementSibling;
-  const photoError = photoInput.nextElementSibling;
+  
 
   let isValid = true;
 
@@ -817,7 +814,7 @@ document.getElementById("playerForm").addEventListener("submit", function (e) {
   ) {
     nameError.textContent = "Invalid name. Please enter at least 2 letters.";
     nameError.classList.remove("hidden");
-    isValid = false;
+    isValid = false;  
   } else {
     nameError.textContent = "";
     nameError.classList.add("hidden");
@@ -833,3 +830,26 @@ document.getElementById("playerForm").addEventListener("submit", function (e) {
   players.push(playerData);
   onCloseCreatePlayer();
 });
+
+
+function compteurJoueurStad(){
+  compteur = activePlayer.length ; 
+  if(compteur==11){
+      alert('Start the game!');
+      return;
+}}
+
+
+const ajoutescore=document.getElementById('ajoutescore');
+let newarray=
+players.forEach((pl)=>{
+  
+  let score=0;
+  score+= pl.shooting>80 ? 5 : 0;
+  score+= pl.pace>80 ? 10 : 0;
+  const div=document.createElement('div');
+  div.innerHTML=`<div>player name:${pl.name}</div>
+    <div>player score:${score}</div>
+    </div>`;
+  ajoutescore.appendChild(div);
+})
