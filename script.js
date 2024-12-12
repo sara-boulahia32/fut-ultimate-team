@@ -841,15 +841,17 @@ function compteurJoueurStad(){
 
 
 const ajoutescore=document.getElementById('ajoutescore');
-let newarray=
-players.forEach((pl)=>{
+
+let newarray= players.filter((pl)=>pl.position==='LW');
+newarray.forEach((pl)=>{
   
   let score=0;
   score+= pl.shooting>80 ? 5 : 0;
   score+= pl.pace>80 ? 10 : 0;
   const div=document.createElement('div');
   div.innerHTML=`<div>player name:${pl.name}</div>
+  <div>player name:${pl.position}</div>
     <div>player score:${score}</div>
-    </div>`;
+    `;
   ajoutescore.appendChild(div);
 })
